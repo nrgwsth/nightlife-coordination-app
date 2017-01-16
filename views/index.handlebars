@@ -1,0 +1,36 @@
+<div class="wrapper" ng-controller="MainCtrl">
+  
+  <div class="logout" ng-hide="login_show">
+      <span>Logged in as [[user.twitter.displayName]]</span>
+      <button><a href="/logout">Logout</a></button>
+  </div>
+  
+  <div class="login" ng-show="login_show">
+      <button><a href="/auth/twitter">Login</a></button>
+  </div>
+  
+  <div class="form">
+    <form name="placeSearch" ng-submit="searchLocation(location)" novalidate>
+      <input type="text" name="location" ng-model="location" placeholder="Search for any location and press enter" autocomplete="off" />
+    </form>
+  </div>
+  
+  <div class="result-wrapper">
+    <div class="result" ng-repeat="res in restaurants" res="res">
+      <div class="logo" style="background-image: url([[res.image_url]])"></div>
+      <h3>[[res.name]]</h3>
+      <button ng-click="going(res, $index)">[[res.going]] Going</button>
+      <div class="result-text"><span>[[res.snippet_text]]</span></div>
+    </div>
+  </div>
+  
+  <div class="error" ng-show="error">
+    <span>[[errorMsg]]</span>
+  </div>
+
+  
+  <div class="overlay" ng-show="loading">
+    
+  </div>
+  <div class="searching" ng-show="loading"><h1>Searching...</h1></div>
+</div>
